@@ -37,7 +37,7 @@ userRouter.put('/:id', async (request, response) => {
 
 
 // deleta
-userRouter.delete('/:id', async (request, response)=>{
+/*userRouter.delete('/:id', async (request, response)=>{
     //const { id } = request.params;
     try {
         const repo = getCustomRepository(UserRepository);
@@ -46,7 +46,7 @@ userRouter.delete('/:id', async (request, response)=>{
     } catch (err) {
         return response.status(400).json({Erro: err.message})
     }
-});
+});*/
 
 // pesquisa por nome
 userRouter.get('/:name', async (request, response) => {
