@@ -21,10 +21,8 @@ userRouter.get('/', async (request, response) => {
     response.json(await getRepository(User).find())
 })
 
-
 // atualiza
-
-userRouter.put('/:id', async (request, response) => {
+/*userRouter.put('/:id', async (request, response) => {
     try {
         const repo = getRepository(User);
         const res = repo.findOne(request.params);
@@ -33,8 +31,7 @@ userRouter.put('/:id', async (request, response) => {
     } catch (err) {
         return response.status(400).json({Erro: err.message})
     }
-});
-
+});*/
 
 // deleta
 /*userRouter.delete('/:id', async (request, response)=>{
