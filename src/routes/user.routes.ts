@@ -22,19 +22,23 @@ userRouter.get('/', async (request, response) => {
 })
 
 // atualiza
-/*userRouter.put('/:id', async (request, response) => {
+userRouter.put('/:id', async (request, response) => {
+    // desestruturar o user
     try {
         const repo = getRepository(User);
-        const res = repo.findOne(request.params);
-        const updateIt = await res.save(request.body);
+        let res = await repo.findOne(request.params);
+        res.name = request.body.name;
+        console.log(res);
+        const updateIt = await repo.save(res);
         response.json(updateIt);
     } catch (err) {
         return response.status(400).json({Erro: err.message})
     }
-});*/
+});
 
 // deleta
-/*userRouter.delete('/:id', async (request, response)=>{
+/*
+userRouter.delete('/:id', async (request, response)=>{
     //const { id } = request.params;
     try {
         const repo = getCustomRepository(UserRepository);
