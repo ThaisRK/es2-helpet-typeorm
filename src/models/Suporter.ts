@@ -6,17 +6,15 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
 } from 'typeorm';
-import Pet from './Pet';
-import Event from './Event';
-import AdoptionRequest from './AdoptionRequest';
 
-@Entity('user')
-export default class User {
+@Entity('suporter')
+export default class Suporter {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({
     length: 100,
+    unique: true,
   })
   name: string;
 
@@ -24,13 +22,15 @@ export default class User {
     length: 11,
     unique: true,
   })
-  cpf: string;
+  cnpj: string;
 
   @Column()
   phone: string;
 
-  @Column()
-  city: string;
+  @Column({
+    unique: true,
+  })
+  website: string;
 
   @Column({
     unique: true,
@@ -39,16 +39,6 @@ export default class User {
 
   @Column()
   password: string;
-
-  // relação
-  @OneToMany(type => Pet, users => User)
-  pets: Pet[];
-
-  @OneToMany(type => Event, users => User)
-  events: Event[];
-
-  @OneToMany(type => AdoptionRequest, users => User)
-  adoptionRequests: AdoptionRequest[];
 
   @CreateDateColumn({ name: 'created_At' })
   created_At: Date;
