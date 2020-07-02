@@ -1,13 +1,14 @@
-console.log('process.env.DATABASE_URL :>>', process.env.DATABASE_URL);
-module.exports = {
+{
   "type": "postgres",
-  "url": process.env.DATABASE_URL,
+  "host": "locahost",
+  "port": 5432,
+  "username":"postgres",
+  "password":"postgres",
+  "database":"helpetdb",
   "entities": [
-    //"src/models/**/*.ts"
     "dist/models/**/*.js"
  ],
  "migrations": [
-  //"src/database/migrations/**/*.ts"
   "dist/database/migrations/**/*.js"
 ],
  "cli":{
