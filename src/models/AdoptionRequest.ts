@@ -21,13 +21,12 @@ export default class AdoptionRequest {
   accepted: boolean;
 
   // relação
-  @ManyToOne(type => Pet, AdoptionRequest => AdoptionRequest)
+  @ManyToOne(type => Pet, AdoptionRequests => AdoptionRequest, { eager: true })
   pets: Pet;
 
-  @ManyToOne(type => User, AdoptionRequest => AdoptionRequest)
+  @ManyToOne(type => User, AdoptionRequests => AdoptionRequest, { eager: true })
   sendBy: User;
 
   @CreateDateColumn({ name: 'created_At' })
   created_At: Date;
-
 }

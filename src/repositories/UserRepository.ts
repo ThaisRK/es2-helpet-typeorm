@@ -10,5 +10,4 @@ export default class UserRepository extends Repository<User> {
       },
     });
   }
-
 }

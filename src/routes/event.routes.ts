@@ -3,7 +3,6 @@ import { getRepository, getCustomRepository } from 'typeorm';
 import Event from '../models/Event';
 import EventRepository from '../repositories/EventRepository';
 
-
 const eventRouter = Router();
 
 // cria
@@ -30,20 +29,19 @@ eventRouter.put('/:id', async (request, response) => {
   try {
     const repo = getRepository(Event);
     const res = await repo.findOne(request.params);
-      if (!res) {
-        response.status(400).send();
-      } else {
-        res.title = title;
-        res.description = description;
+    if (!res) {
+      response.status(400).send();
+    } else {
+      res.title = title;
+      res.description = description;
 
-        console.log(res);
-        const updateIt = await repo.save(res);
-        response.json(updateIt);
-      }
+      console.log(res);
+      const updateIt = await repo.save(res);
+      response.json(updateIt);
+    }
   } catch (err) {
     return response.status(400).json({ Erro: err.message });
   }
-
 });
 
 // pesquisa por nome

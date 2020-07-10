@@ -68,16 +68,13 @@ export default class Pet {
   state: State;
 
   // relação
-  @ManyToOne(type => User, pets => Pet)
-  @JoinTable()
+  @ManyToOne(type => User, pets => Pet, { eager: true })
   users: User;
 
   @OneToOne(type => Event, pet => Pet)
-  @JoinColumn()
   event: Event;
 
   @OneToMany(type => AdoptionRequest, pets => Pet)
-  @JoinTable()
   adoptionRequests: AdoptionRequest;
 
   @CreateDateColumn({ name: 'created_At' })

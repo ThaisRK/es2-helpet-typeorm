@@ -6,39 +6,26 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
 } from 'typeorm';
+import {
+  IsEmail,
+  Min,
+  Max,
+  MaxLength,
+  MinLength,
+  minLength,
+} from 'class-validator';
 import Pet from './Pet';
 import Event from './Event';
 import AdoptionRequest from './AdoptionRequest';
+import Person from './Person';
 
 @Entity('user')
-export default class User {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
-
-  @Column({
-    length: 100,
-  })
-  name: string;
-
+export default class User extends Person {
   @Column({
     length: 11,
     unique: true,
   })
   cpf: string;
-
-  @Column()
-  phone: string;
-
-  @Column()
-  city: string;
-
-  @Column({
-    unique: true,
-  })
-  email: string;
-
-  @Column()
-  password: string;
 
   // relação
   @OneToMany(type => Pet, users => User)
@@ -47,12 +34,6 @@ export default class User {
   @OneToMany(type => Event, users => User)
   events: Event[];
 
-  @OneToMany(type => AdoptionRequest, users => User)
+  @OneToMany(type => AdoptionRequest, sendBy => User)
   adoptionRequests: AdoptionRequest[];
-
-  @CreateDateColumn({ name: 'created_At' })
-  created_At: Date;
-
-  @UpdateDateColumn({ name: 'updated_At' })
-  updated_At: Date;
 }

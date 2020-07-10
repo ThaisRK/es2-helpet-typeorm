@@ -1,48 +1,16 @@
-import {
-  Entity,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  PrimaryGeneratedColumn,
-  OneToMany,
-} from 'typeorm';
+import { Entity, Column } from 'typeorm';
+import Person from './Person';
 
 @Entity('suporter')
-export default class Suporter {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
-
-  @Column({
-    length: 100,
-    unique: true,
-  })
-  name: string;
-
+export default class Suporter extends Person {
   @Column({
     length: 11,
     unique: true,
   })
   cnpj: string;
 
-  @Column()
-  phone: string;
-
   @Column({
     unique: true,
   })
   website: string;
-
-  @Column({
-    unique: true,
-  })
-  email: string;
-
-  @Column()
-  password: string;
-
-  @CreateDateColumn({ name: 'created_At' })
-  created_At: Date;
-
-  @UpdateDateColumn({ name: 'updated_At' })
-  updated_At: Date;
 }

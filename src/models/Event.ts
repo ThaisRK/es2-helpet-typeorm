@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinTable,
   OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { MaxLength, MinLength } from 'class-validator';
 import User from './User';
@@ -26,11 +27,12 @@ export default class Event {
   description: string;
 
   // relação
-  @ManyToOne(type => User, events => Event)
-  @JoinTable()
+  @ManyToOne(type => User, events => Event, { eager: true })
   users: User;
 
-  @OneToOne(type => Pet, event => Event)
+  // oneToOne não pode eager?
+  @OneToOne(type => Pet, event => Event, { eager: true })
+  @JoinColumn()
   pet: Pet;
 
   @CreateDateColumn({ name: 'created_At' })
